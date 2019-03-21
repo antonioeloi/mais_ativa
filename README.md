@@ -1,4 +1,4 @@
-![mais ativa logo](https://raw.githubusercontent.com/aeloi98/mais_ativa/master/asset/mais_ativa_logo.png)
+![mais ativa logo](https://raw.githubusercontent.com/aeloi98/mais_ativa/master/assets/mais_ativa_logo.png)
 
 *The elderly do not have an active lifestyle, with no stimulant cognitive and/or physical activities. Our app will improve their lifestyle with games and ways to contact their family.*
 
@@ -21,4 +21,4 @@ Our app only needs a smartphone and is intuitive enough so that the elderly can 
 
 ## *Photos*
 
-![a equipa](https://raw.githubusercontent.com/aeloi98/mais_ativa/master/asset/photo_2019-03-21_17-47-54.jpg)
+![a equipa](https://raw.githubusercontent.com/aeloi98/mais_ativa/master/assets/photo_2019-03-21_17-47-54.jpg)
