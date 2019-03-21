@@ -1,4 +1,4 @@
-# +ativa
+![mais ativa logo](/asset/mais_ativa_logo.png)
 
 *The elderly do not have an active lifestyle, with no stimulant cognitive and/or physical activities. Our app will improve their lifestyle with games and ways to contact their family.*
 
