@@ -18,3 +18,7 @@ These people suffer from the negative effects of social exclusion and usually sh
 ## *A cheaper alternative*
 
 Our app only needs a smartphone and is intuitive enough so that the elderly can easily get the gist of it.
+
+## *Photos*
+
+![a equipa](https://raw.githubusercontent.com/aeloi98/mais_ativa/master/asset/photo_2019-03-21_17-47-54.jpg)
