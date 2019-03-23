@@ -20,6 +20,14 @@ These people suffer from the negative effects of social exclusion and usually sh
 
 Our app only needs a smartphone and is intuitive enough so that the elderly can easily get the gist of it.
 
+## *"Pretotype" Screenshots*
+
+The app offers a simple and intuitive feed filled with suggestions of tasks.
+![screenshot](https://raw.githubusercontent.com/aeloi98/mais_ativa/master/assets/Screenshot_2019-03-23-11-46-12-351_com.example.mais_ativa.png)
+
+There will be several games adapted and implemented with the elderly in mind.
+![screenshot jogo](https://raw.githubusercontent.com/aeloi98/mais_ativa/master/assets/Screenshot_2019-03-23-11-46-20-129_com.example.mais_ativa.png)
+
 ## *Photos*
 
 ![a equipa](https://raw.githubusercontent.com/aeloi98/mais_ativa/master/assets/photo_2019-03-21_17-47-54.jpg)
