@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter_chess_board/src/chess_board.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,20 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '+ativa',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: '+ativa'),
     );
   }
 }
@@ -44,68 +37,256 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _mode = 0;
 
-  void _incrementCounter() {
+  void _toChess() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _mode = 1;
     });
+
+    print(_mode);
+  }
+
+  void _toChat() {
+    setState(() {
+      _mode = 2;
+    });
+
+    print(_mode);
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+    if (_mode == 2) {
+      return WillPopScope(
+        onWillPop: _requestPop,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title: Image(image: AssetImage("assets/mais_ativa_logo.png")),
+            centerTitle: true,
+          ),
+          body: Center(
+            child: Text("Conversa não implementada!"),
+          ),
+        ),
+      );
+    } else if (_mode == 1) {
+      return WillPopScope(
+        onWillPop: _requestPop,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title: Image(image: AssetImage("assets/mais_ativa_logo.png")),
+            centerTitle: true,
+          ),
+          body: Center(
+            child: ChessBoard(
+              size: 400.0,
+              onMove: (move) {
+                print(move);
+              },
+              onCheckMate: (color) {
+                print(color);
+              },
+              onDraw: () {
+                print("DRAW!");
+              },
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+          ),
+        ),
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Image(image: AssetImage("assets/mais_ativa_logo.png")),
+          centerTitle: true,
+        ),
+        body: ListView(
+          children: <Widget>[
+            ModeButton(
+              _toChess,
+              "Jogo",
+              Colors.white,
+              Color(0xFFAEEA00),
+              Icon(
+                Icons.videogame_asset,
+                color: Colors.white,
+                size: 40.0,
+              ),
+            ),
+            ModeButton(
+              _toChat,
+              "Conversa",
+              Colors.white,
+              Color(0xFF0080EE),
+              Icon(
+                Icons.chat,
+                color: Colors.white,
+                size: 40.0,
+              ),
+            ),
+            ModeButton(
+              null,
+              "Sugestões",
+              Colors.black,
+              Colors.white,
+              Icon(
+                Icons.lightbulb_outline,
+                color: Colors.black,
+                size: 40.0,
+              ),
+            ),
+            SuggestionButton(
+              _toChess,
+              "Jogue Xadrez",
+              "O seu neto quer que jogue xadrez!",
+              Colors.black,
+              Colors.white,
+              Icon(
+                Icons.videogame_asset,
+                color: Colors.black,
+                size: 40.0,
+              ),
+            ),
+            SuggestionButton(
+              null,
+              "Faça um Ramo de Flores",
+              "A pedido do centro de dia!",
+              Colors.black,
+              Colors.white,
+              Icon(
+                Icons.local_florist,
+                color: Colors.black,
+                size: 40.0,
+              ),
+            ),
+            SuggestionButton(
+              null,
+              "Alongue o seu corpo!",
+              "Não se esqueça de alongar o corpo, a pedido do seu médico!",
+              Colors.black,
+              Colors.white,
+              Icon(
+                Icons.person,
+                color: Colors.black,
+                size: 40.0,
+              ),
+            ),
+            SuggestionButton(
+              _toChess,
+              "Jogue Xadrez",
+              "Bata o recorde pessoal da sua amiga Gertrudes!",
+              Colors.black,
+              Colors.white,
+              Icon(
+                Icons.videogame_asset,
+                color: Colors.black,
+                size: 40.0,
+              ),
             ),
           ],
         ),
+      );
+    }
+  }
+
+  Future<bool> _requestPop() {
+    setState(() {
+      _mode = 0;
+    });
+    return Future.value(false);
+  }
+}
+
+class ModeButton extends StatelessWidget {
+  final Function onPressed;
+  final String text;
+
+  final Color textColor;
+  final Color backgroundColor;
+  final Icon icon;
+
+  const ModeButton(this.onPressed, this.text, this.textColor,
+      this.backgroundColor, this.icon);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(8.0),
+      height: 128.0,
+      child: Material(
+        color: this.backgroundColor,
+        elevation: 4.0,
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        child: InkWell(
+          onTap: this.onPressed,
+          child: Center(
+            child: ListTile(
+              leading: this.icon,
+              title: Text(
+                this.text,
+                style: TextStyle(
+                  color: this.textColor,
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class SuggestionButton extends StatelessWidget {
+  final Function onPressed;
+  final String title;
+  final String text;
+  final Color textColor;
+  final Color backgroundColor;
+  final Icon icon;
+
+  const SuggestionButton(this.onPressed, this.title, this.text, this.textColor,
+      this.backgroundColor, this.icon);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(8.0),
+      child: Material(
+        color: this.backgroundColor,
+        elevation: 4.0,
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        child: InkWell(
+            onTap: this.onPressed,
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                      leading: this.icon,
+                      title: Text(
+                        this.title,
+                        style: TextStyle(
+                          color: this.textColor,
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      this.text,
+                      style: TextStyle(fontSize: 30.0),
+                    ),
+                  ],
+                ),
+              ),
+            )),
+      ),
     );
   }
 }
