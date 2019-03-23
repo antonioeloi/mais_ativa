@@ -11,9 +11,10 @@ These people suffer from the negative effects of social exclusion and usually sh
 
 ## *Our answer to this threat*
 
-+ativa is an intuitive app that offers two main features:
++ativa is an intuitive app that offers three main features:
 - Stimulant cognitive activities, such as games.
 - Basic image and voice sharing chat with family.
+- Gamification of day-to-day tasks, with a concept of workspaces. *(Workspaces can be a family, a group of friends or even a retirement home)*
 
 ## *A cheaper alternative*
 
